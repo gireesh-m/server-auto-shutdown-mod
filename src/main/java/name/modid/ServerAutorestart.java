@@ -17,8 +17,8 @@ public class ServerAutorestart implements ModInitializer {
 	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-	private static final long INACTIVITY_THRESHOLD = 1000 * 60 * 30; // 30 minutes
-	private static final int CHECK_INTERVAL_TICKS = 20 * 60 * 10; // 10 minute
+	private static final long INACTIVITY_THRESHOLD = 1000 * 60 * 1; // 30 minutes
+	private static final int CHECK_INTERVAL_TICKS = 20 * 30 * 1; // 10 minute
 	private long lastActivityTime;
 	private int tickCounter;
 
@@ -44,8 +44,8 @@ public class ServerAutorestart implements ModInitializer {
                 long currentTime = System.currentTimeMillis();  
                 if (currentTime - lastActivityTime > INACTIVITY_THRESHOLD) {  
 					LOGGER.info(String.format("Server has been inactive for %d minutes. Restarting...", INACTIVITY_THRESHOLD / 1000 / 60));
-                    server.stop(true);
-                }  
+                    server.stop(false);
+                } 
             } else {
                 lastActivityTime = System.currentTimeMillis();  
             }  
